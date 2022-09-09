@@ -98,18 +98,29 @@ behave .\features\restapp.feature
 #### Unit 
 
 There are unit test included with this project, we are testing the item builder for the object that
-it rerutns.
+it returns.
 
 ``` python
 
  def test_item_builder_data(self):
-        """
-        Test to see if item_builder returns the correctly keyed dictionary object
-        based on raw data passed to it
-        """
         expected = {'name': 'Tool', 'description': 'Hammer', 'price': 10.5, '_id': 99}
         self.assertEqual(item_builder("Tool", "Hammer", 10.50, 99), expected)
 
 ```
 If we test the builder and input a name of "Tool", a description of "Hammer", a price of "10.5" and an ID
 of "99" we can expect an object ot be created that mathes this format.
+
+#### Integration 
+
+An example integration test is included in the project.
+
+For integration tests we can test the RESTful endpoints.
+
+``` Python
+
+ def test_create_post_request_status(self):
+        response = requests.post(BASE_URL + '/create', json = {'name': 'Tool', 'description': 'Hammer', 'price': 10.5})
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+```
+If we test the Create enpoint by sending a request with a method of `POST` and path of `/create` we should expect the response to be...
+Status code: 201, Status text: Created 
