@@ -14,6 +14,8 @@ from sqlalchemy import exc
 import mimetypes
 mimetypes.add_type('text/javascript', '.js')
 
+#Added a point less comment
+
 # set up the app with listening socket for http requests and appropriate hostname
 PORT = 8080
 HOST = 'localhost'
